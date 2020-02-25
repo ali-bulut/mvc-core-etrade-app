@@ -1,0 +1,31 @@
+﻿@model Abc.Northwind.MvcWebUI.Models.ProductListViewModel
+
+
+@{
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Product Name</th>
+                <th scope="col">Unit Price</th>
+                <th scope="col">Units In Stock</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model.Products)
+            {
+                <tr>
+                    <td>@product.ProductName</td>
+                    <td>@product.UnitPrice</td>
+                    <td>@product.UnitsInStock</td>
+                    <td><a class="btn btn-xs btn-success" asp-controller="Cart" asp-action="AddToCart" asp-route-productId="@product.ProductId">Add To Cart</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<product-list-pager page-size="@Model.PageSize" page-count="@Model.PageCount" current-page="@Model.CurrentPage" current-category="@Model.CurrentCategory"></product-list-pager>
